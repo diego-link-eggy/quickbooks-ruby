@@ -3,10 +3,19 @@ module Quickbooks
     class BaseReference < BaseModel
       xml_convention :camelcase
       xml_accessor :name, :from => '@name' # Attribute with name 'name'
+      xml_accessor :type, :from => '@type' 
       xml_accessor :value, :from => :content
 
       def initialize(value = nil)
-        self.value = value
+        puts "\n\n\nInit"
+        puts BaseModel === value 
+        puts value
+        if BaseModel === value 
+          self.value = value.id
+          self.type = value.class.const_get(:XML_NODE)
+        else  
+          self.value = value
+        end  
       end
 
       def to_i

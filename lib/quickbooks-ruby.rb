@@ -61,6 +61,8 @@ require 'quickbooks/model/purchase_order'
 require 'quickbooks/model/vendor_credit'
 require 'quickbooks/model/estimate'
 require 'quickbooks/model/invoice'
+require 'quickbooks/model/attachable_ref'
+require 'quickbooks/model/attachable'
 
 #== Services
 require 'quickbooks/service/service_crud'
@@ -84,6 +86,7 @@ require 'quickbooks/service/purchase'
 require 'quickbooks/service/purchase_order'
 require 'quickbooks/service/vendor_credit'
 require 'quickbooks/service/estimate'
+require 'quickbooks/service/upload'
 
 module Quickbooks
   @@logger = nil
