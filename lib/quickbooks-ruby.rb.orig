@@ -62,12 +62,17 @@ require 'quickbooks/model/purchase_order'
 require 'quickbooks/model/vendor_credit'
 require 'quickbooks/model/estimate'
 require 'quickbooks/model/invoice'
+<<<<<<< HEAD
+require 'quickbooks/model/attachable_ref'
+require 'quickbooks/model/attachable'
+||||||| merged common ancestors
+=======
 require 'quickbooks/model/tax_rate'
 require 'quickbooks/model/tax_rate_detail'
 require 'quickbooks/model/sales_tax_rate_list'
 require 'quickbooks/model/tax_code'
-require 'quickbooks/model/attachable_ref'
-require 'quickbooks/model/attachable'
+>>>>>>> upstream/master
+
 #== Services
 require 'quickbooks/service/service_crud'
 require 'quickbooks/service/base_service'
@@ -91,9 +96,13 @@ require 'quickbooks/service/purchase'
 require 'quickbooks/service/purchase_order'
 require 'quickbooks/service/vendor_credit'
 require 'quickbooks/service/estimate'
+<<<<<<< HEAD
+require 'quickbooks/service/upload'
+||||||| merged common ancestors
+=======
 require 'quickbooks/service/tax_rate'
 require 'quickbooks/service/tax_code'
-require 'quickbooks/service/upload'
+>>>>>>> upstream/master
 
 module Quickbooks
   @@logger = nil

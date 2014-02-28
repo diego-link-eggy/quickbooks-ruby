@@ -12,6 +12,23 @@ This library communicates with the Quickbooks Data Services `v3` API, documented
 
 [Data Services v3](https://developer.intuit.com/docs/0025_quickbooksapi/0050_data_services)
 
+## Changes in 0.1.x from 0.0.x
+
+`0.1.0` introduced a backwards-incompatible change in how boolean attributes are handled. As of `0.1.0` any boolean like:
+
+`xml_accessor :active?, :from => 'Active'`
+
+will be accessible via `active?`. Thereby eliminating custom code like:
+
+```ruby
+def active?
+  active.to_s == 'true'
+end
+```
+
+Now a call to `active?` that is not set will return `nil`. Otherwise it return `true` / `false`.
+Moreover, there is no longer a getter method e.g. `active` (without the trailing `?`).
+
 ## Requirements
 
 This has been tested on 1.9.3, 2.0.0, and 2.1.0.
@@ -228,47 +245,65 @@ Quickbooks.log = true
 ## Entities Implemented
 
 Entity            | Create | Update | Query | Delete | Fetch by ID | Other
----               | ---    | ---    | ---  | ---    | ---         | ---
-Account           | yes    | yes    | yes  | yes    | yes
-Attachable        | no     | no     | no   | no     | no
-Bill              | yes    | yes    | yes  | yes    | yes
-Bill Payment      | yes    | yes    | yes  | yes    | yes
-Class             | no    | no    | no  | no    | no
-Company Info      | n/a     | n/a     | yes   | n/a     | yes          |
-Credit Memo | yes     | yes     | yes   | no     | no          |
-Customer          | yes    | yes    | yes  | yes    | yes         |
-Department          | no    | no    | no  | no    | no         |
-Employee          | yes    | yes    | yes  | yes    | yes         |
-Entitlements          | no    | no    | no  | no    | no         |
-Estimate           | yes    | yes    | yes  | yes    | yes         |
-Invoice           | yes    | yes    | yes  | yes    | yes         |
-Item              | yes    | yes    | yes  | yes    | yes         |
-Journal Entry     | no    | no    | no  | no    | no         |
-Payment           | yes    | yes    | yes  | yes    | yes         |
-PaymentMethod     | yes    | yes    | yes  | yes    | yes         |
-Preferences           | no    | no    | no  | no    | no         |
-Purchase           | yes    | yes    | yes  | yes    | yes         |
-Purchase Order      | yes    | yes    | yes  | yes    | yes         |
-Sales Receipt     | yes    | yes    | yes  | yes    | yes         |
-Sales Rep         | no     | no     | no   | no     | no          |
-Sales Tax         | no     | no     | no   | no     | no          |
-Sales Term        | no    | no    | no  | no    | no         |
-Tax Code     | no    | no    | no  | no    | no         |
-Tax Rate     | no    | no    | no  | no    | no         |
-Term     | yes    | yes    | yes  | yes    | yes         |
-Time Activity     | yes    | yes    | yes  | yes    | yes         |
-Tracking Class    | no    | no    | no  | no    | no         |
-Vendor            | yes    | yes    | yes  | yes    | yes         |
-Vendor Credit     | yes    | yes    | yes  | yes    | yes         |
+---               | ---    | ---    | ---   | ---    | ---         | ---
+Account           | yes    | yes    | yes   | yes    | yes         |
+Attachable        | no     | no     | no    | no     | no          |
+Bill              | yes    | yes    | yes   | yes    | yes         |
+Bill Payment      | yes    | yes    | yes   | yes    | yes         |
+Class             | no     | no     | no    | no     | no          |
+Company Info      | n/a    | n/a    | yes   | n/a    | yes         |
+Credit Memo       | yes    | yes    | yes   | no     | no          |
+Customer          | yes    | yes    | yes   | yes    | yes         |
+Department        | no     | no     | no    | no     | no          |
+Employee          | yes    | yes    | yes   | yes    | yes         |
+Entitlements      | no     | no     | no    | no     | no          |
+Estimate          | yes    | yes    | yes   | yes    | yes         |
+Invoice           | yes    | yes    | yes   | yes    | yes         |
+Item              | yes    | yes    | yes   | yes    | yes         |
+Journal Entry     | no     | no     | no    | no     | no          |
+Payment           | yes    | yes    | yes   | yes    | yes         |
+PaymentMethod     | yes    | yes    | yes   | yes    | yes         |
+Preferences       | no     | no     | no    | no     | no          |
+Purchase          | yes    | yes    | yes   | yes    | yes         |
+Purchase Order    | yes    | yes    | yes   | yes    | yes         |
+Sales Receipt     | yes    | yes    | yes   | yes    | yes         |
+Sales Rep         | no     | no     | no    | no     | no          |
+Sales Tax         | no     | no     | no    | no     | no          |
+Sales Term        | no     | no     | no    | no     | no          |
+Tax Code          | no     | no     | yes   | no     | no          |
+Tax Rate          | no     | no     | yes   | no     | no          |
+Term              | yes    | yes    | yes   | yes    | yes         |
+Time Activity     | yes    | yes    | yes   | yes    | yes         |
+Tracking Class    | no     | no     | no    | no     | no          |
+Vendor            | yes    | yes    | yes   | yes    | yes         |
+Vendor Credit     | yes    | yes    | yes   | yes    | yes         |
 
 
 ## TODO
 
-* Implement other Line Item types, e.g. `DiscountLineDetail`, `DescriptionLineDetail` for Invoices
+* Implement other Line Item types, e.g. `DescriptionLineDetail` for Invoices
 
 ## Author
 
 Cody Caughlan
+
+## Contributors
+`quickbooks-ruby` has been a community effort and I am thankful for all the amazing contributors. If I have missed
+your name please email me or submit a Pull Request.
+
+* Bruno Buccolo
+* Christian
+* Eggy
+* Evan Walsh
+* Exe Curia
+* Jason Dew
+* jleo3
+* Joe Wright
+* Josh Wilson
+* Pavel Pachkovskij
+* Sean Xie
+* Steven Chau
+* Washington Luiz
 
 ## License
 
