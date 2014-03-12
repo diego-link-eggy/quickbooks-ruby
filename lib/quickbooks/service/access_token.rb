@@ -35,18 +35,9 @@ module Quickbooks
       end
       
       def bluedot
-        result = nil
-        response = do_http_get(BLUEDOT_URL)
-        if response
-          code = response.code.to_i
-          if code == 200
-            result = response.plain_body
-          end
-        end
-
-        result
+        #Can't xml parse this html response
+        @oauth.get(BLUEDOT_URL, {})
       end
-
     end
   end
 end
