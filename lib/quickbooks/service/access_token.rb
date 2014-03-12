@@ -40,7 +40,7 @@ module Quickbooks
         if response
           code = response.code.to_i
           if code == 200
-            result = Quickbooks::Model::AccessTokenResponse.from_xml(response.plain_body)
+            result = response.plain_body
           end
         end
 
