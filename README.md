@@ -184,7 +184,7 @@ If you don't have the complete object on hand and only want to change a couple o
 
 ```ruby
 # update a Customer's name when we only know their ID
-customer = Quickbooks::Customer::Model.new
+customer = Quickbooks::Model::Customer.new
 customer.id = 99
 customer.company_name = "New Company Name"
 service.update(customer, :sparse => true)
@@ -229,6 +229,62 @@ Use `Service#delete` which returns a boolean on whether the delete operation suc
 ```ruby
 service.delete(customer)
 => returns boolean
+```
+
+## Email Addresses
+Email attributes are not just strings, they are top-level objects, e.g. `EmailAddress` on a `Customer` for instance.
+
+A `Customer` has a setter method to make assigning an email address easier.
+
+```ruby
+customer = Quickbooks::Model::Customer.new
+customer.email_address = "foo@example.com"
+```
+
+## Batch Operations
+
+You can batch operations such creating an Invoice, updating a Customer, etc. The maximum batch size is 25 objects.
+
+How to use:
+
+```ruby
+batch_req = Quickbooks::Model::BatchRequest.new
+
+customer = Quickbooks::Model::Customer.new
+# build the customer as needed
+...
+
+item = Quickbooks::Model::Item.new
+# build the item as needed
+...
+
+batch_req.add("bId1", customer, "create")
+batch_req.add("bId2", item, "create")
+
+# Add more items to create/update as needed, up to 25
+
+batch_service = Quickbooks::Service::Batch.new
+batch_response = batch_service.make_request(batch_req)
+batch_response.response_items.each do |res|
+  puts res.bId
+  puts res.fault? ? "error" : "success"
+end
+```
+
+For complete details on Batch Operations see:
+https://developer.intuit.com/docs/0025_quickbooksapi/0050_data_services/020_key_concepts/00700_batch_operation
+
+## Query Building / Filtering
+Intuit requires that complex queries be escaped in a certain way. To make it easier to build queries that will be accepted I have provided a *basic* Query builder.
+
+```ruby
+util = Quickbooks::Util::QueryBuilder.new
+
+# the method signature is: clause(field, operator, value)
+clause1 = util.clause("DisplayName", "LIKE", "%O'Halloran")
+clause2 = util.clause("CompanyName", "=", "Smith")
+
+service.query("SELECT * FROM Customer WHERE #{clause1} OR #{clause2}")
 ```
 
 ## Logging
