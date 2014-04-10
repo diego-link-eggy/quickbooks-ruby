@@ -74,6 +74,7 @@ require 'quickbooks/model/batch_request'
 require 'quickbooks/model/batch_response'
 require 'quickbooks/model/attachable_ref'
 require 'quickbooks/model/attachable'
+require 'quickbooks/model/department'
 
 #== Services
 require 'quickbooks/service/service_crud'
@@ -102,6 +103,7 @@ require 'quickbooks/service/tax_rate'
 require 'quickbooks/service/tax_code'
 require 'quickbooks/service/batch'
 require 'quickbooks/service/upload'
+require 'quickbooks/service/department'
 
 module Quickbooks
   @@logger = nil
