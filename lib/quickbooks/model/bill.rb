@@ -28,6 +28,7 @@ module Quickbooks
       xml_accessor :bill_email, :from => 'BillEmail', :as => EmailAddress
       xml_accessor :reply_email, :from => 'ReplyEmail', :as => EmailAddress
       xml_accessor :total, :from => 'TotalAmt', :as => BigDecimal
+      xml_accessor :balance, :from => 'Balance', :as => BigDecimal
 
       validates_length_of :line_items, :minimum => 1
 
