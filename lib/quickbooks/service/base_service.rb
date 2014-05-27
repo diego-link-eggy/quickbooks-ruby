@@ -213,7 +213,11 @@ module Quickbooks
 
       def add_query_string_to_url(url, params)
         if params.is_a?(Hash) && !params.empty?
-          url + "?" + params.collect { |k| "#{k.first}=#{k.last}" }.join("&")
+          url + "?" + params.collect do |k| 
+            "#{CGI::escape(k.first.to_s)}=#{CGI::escape(k.last.to_s)}"
+            #"#{k.first.to_s}=#{k.last.to_s}"
+          end.join("&")
+
         else
           url
         end
