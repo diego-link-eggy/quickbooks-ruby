@@ -47,6 +47,12 @@ module Quickbooks
         "#{url_for_base}/query?query=#{URI.encode_www_form_component(query)}"
       end
 
+      def url_for_change_data(since_time)
+        entity_name = model.const_get(:XML_COLLECTION_NODE)
+        since_time = CGI.escape(Util::Formatting.format_time(since_time))
+        "#{url_for_base}/cdc?entities=#{entity_name}&changedSince=#{since_time}"
+      end
+
       private
 
       def parse_xml(xml)
@@ -78,6 +84,12 @@ module Quickbooks
         max_results = per_page
         response = do_http_get(url_for_query(query, start_position, max_results))
 
+        parse_collection(response, model)
+      end
+
+      def fetch_change_data(model, since_time)
+        response = do_http_get(url_for_change_data(since_time))
+        puts @last_response_xml.to_xml
         parse_collection(response, model)
       end
 

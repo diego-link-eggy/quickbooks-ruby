@@ -18,6 +18,7 @@ module Quickbooks
       xml_accessor :vendor_ref, :from => 'VendorRef', :as => BaseReference
       xml_accessor :payer_ref, :from => 'PayerRef', :as => BaseReference
       xml_accessor :sales_term_ref, :from => 'SalesTermRef', :as => BaseReference
+      xml_accessor :department_ref, :from => 'DepartmentRef', :as => BaseReference
 
       xml_accessor :due_date, :from => 'DueDate', :as => Date
       xml_accessor :remit_to_address, :from => 'RemitToAddr', :as => PhysicalAddress
@@ -27,10 +28,11 @@ module Quickbooks
       xml_accessor :bill_email, :from => 'BillEmail', :as => EmailAddress
       xml_accessor :reply_email, :from => 'ReplyEmail', :as => EmailAddress
       xml_accessor :total, :from => 'TotalAmt', :as => BigDecimal
+      xml_accessor :balance, :from => 'Balance', :as => BigDecimal
 
       validates_length_of :line_items, :minimum => 1
 
-      reference_setters :vendor_ref, :payer_ref, :sales_term_ref
+      reference_setters :vendor_ref, :payer_ref, :sales_term_ref, :department_ref
     end
   end
 end

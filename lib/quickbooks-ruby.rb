@@ -11,6 +11,7 @@ require 'quickbooks/util/logging'
 require 'quickbooks/util/http_encoding_helper'
 require 'quickbooks/util/name_entity'
 require 'quickbooks/util/query_builder'
+require 'quickbooks/util/formatting'
 
 #== Models
 require 'quickbooks/model/base_model'
@@ -73,6 +74,7 @@ require 'quickbooks/model/batch_request'
 require 'quickbooks/model/batch_response'
 require 'quickbooks/model/attachable_ref'
 require 'quickbooks/model/attachable'
+require 'quickbooks/model/department'
 
 #== Services
 require 'quickbooks/service/service_crud'
@@ -102,6 +104,7 @@ require 'quickbooks/service/tax_code'
 require 'quickbooks/service/batch'
 require 'quickbooks/service/upload'
 require 'quickbooks/service/reports'
+require 'quickbooks/service/department'
 
 module Quickbooks
   @@logger = nil

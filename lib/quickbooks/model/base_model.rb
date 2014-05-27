@@ -6,6 +6,9 @@ module Quickbooks
 
       xml_convention :camelcase
 
+      xml_accessor :entity_status, :from => '@status'
+      xml_accessor :entity_sparse?, :from => '@sparse'
+
       def initialize(attributes={})
         attributes.each {|key, value| public_send("#{key}=", value) }
       end

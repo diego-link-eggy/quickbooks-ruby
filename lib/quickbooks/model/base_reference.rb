@@ -7,9 +7,6 @@ module Quickbooks
       xml_accessor :value, :from => :content
 
       def initialize(value = nil)
-        puts "\n\n\nInit"
-        puts BaseModel === value 
-        puts value
         if BaseModel === value 
           self.value = value.id
           self.type = value.class.const_get(:XML_NODE)

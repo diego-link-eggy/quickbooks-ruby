@@ -52,6 +52,10 @@ module Quickbooks
         end
       end
 
+      def change_data(since_time)
+        fetch_change_data(model, since_time)
+      end
+
     end
   end
 end
